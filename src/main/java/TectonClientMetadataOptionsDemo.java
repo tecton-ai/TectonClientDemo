@@ -1,9 +1,9 @@
-import com.tecton.client.TectonClient;
-import com.tecton.client.model.FeatureValue;
-import com.tecton.client.model.SloInformation;
-import com.tecton.client.request.GetFeaturesRequest;
-import com.tecton.client.request.GetFeaturesRequestData;
-import com.tecton.client.response.GetFeaturesResponse;
+import ai.tecton.client.TectonClient;
+import ai.tecton.client.model.FeatureValue;
+import ai.tecton.client.model.SloInformation;
+import ai.tecton.client.request.GetFeaturesRequest;
+import ai.tecton.client.request.GetFeaturesRequestData;
+import ai.tecton.client.response.GetFeaturesResponse;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class TectonClientMetadataOptionsDemo {
 
         // Create Request
         GetFeaturesRequest getFeaturesRequest =
-                new GetFeaturesRequest("prod", "fraud_detection_feature_service", getFeaturesRequestData, GetFeaturesRequest.MetadataOption.ALL);
+                new GetFeaturesRequest("pooja-live", "fraud_detection_feature_service", getFeaturesRequestData, GetFeaturesRequest.MetadataOption.ALL);
 
 
         // Send request and receive response
@@ -44,8 +44,8 @@ public class TectonClientMetadataOptionsDemo {
             System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
             System.out.println("Feature Name: " + featureValue.getFeatureName());
             System.out.println("Data Type: " + featureValue.getValueType().name());
-            if (featureValue.getEffectiveTime() != null) {
-                System.out.println("Effective Time: " + featureValue.getEffectiveTime().toString());
+            if (featureValue.getEffectiveTime().isPresent()) {
+                System.out.println("Effective Time: " + featureValue.getEffectiveTime().get());
             }
             switch (featureValue.getValueType()) {
                 case STRING:
@@ -72,6 +72,9 @@ public class TectonClientMetadataOptionsDemo {
             }
             if(sloInfo.getServerTimeSeconds().isPresent()) {
                 System.out.println("serverTimeSeconds: "+sloInfo.getServerTimeSeconds().get());
+            }
+            if(sloInfo.getSloServerTimeSeconds().isPresent()) {
+                System.out.println("sloServerTimeSeconds: "+sloInfo.getSloServerTimeSeconds().get());
             }
         }
     }

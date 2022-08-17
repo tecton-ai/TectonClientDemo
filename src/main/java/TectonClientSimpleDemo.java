@@ -1,13 +1,14 @@
-import com.tecton.client.TectonClient;
-import com.tecton.client.model.FeatureValue;
-import com.tecton.client.model.ValueType;
-import com.tecton.client.request.GetFeaturesRequest;
-import com.tecton.client.request.GetFeaturesRequestData;
-import com.tecton.client.response.GetFeaturesResponse;
+
+import ai.tecton.client.TectonClient;
+import ai.tecton.client.model.FeatureValue;
+import ai.tecton.client.model.ValueType;
+import ai.tecton.client.request.GetFeaturesRequest;
+import ai.tecton.client.request.GetFeaturesRequestData;
+import ai.tecton.client.response.GetFeaturesResponse;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -19,10 +20,11 @@ public class TectonClientSimpleDemo {
         properties.load(new FileInputStream("tecton.properties"));
         String url = properties.getProperty("url");
         String apiKey = properties.getProperty("apiKey");
-        //String apiKey = "12345";
+        //String apiKey = "1234";
 
         // Create Tecton Client
         TectonClient tectonClient = new TectonClient(url, apiKey);
+
 
         // Create Request Data
         GetFeaturesRequestData getFeaturesRequestData =
@@ -31,14 +33,22 @@ public class TectonClientSimpleDemo {
                         .addJoinKey("merchant", "entertainment")
                         .addRequestContext("amt", 500.00);
 
-
         // Create Request
         GetFeaturesRequest getFeaturesRequest =
-                new GetFeaturesRequest("prod", "fraud_detection_feature_service", getFeaturesRequestData);
+                new GetFeaturesRequest("pooja-live", "fraud_detection_feature_service", getFeaturesRequestData);
 
-
+        GetFeaturesResponse getFeaturesResponse;
+        for(int i=0; i<5; i++) {
+            getFeaturesResponse = tectonClient.getFeatures(getFeaturesRequest);
+        }
+        long start = System.currentTimeMillis();
         // Send request and receive response
-        GetFeaturesResponse getFeaturesResponse = tectonClient.getFeatures(getFeaturesRequest);
+        getFeaturesResponse = tectonClient.getFeatures(getFeaturesRequest);
+        long stop = System.currentTimeMillis();
+
+        System.out.println("\nResponse Time = "+(stop-start));
+        //Get Feature Vector as List
+        List<FeatureValue> featureValueList = getFeaturesResponse.getFeatureValues();
 
         //Get Feature Vector as Map
         Map<String, FeatureValue> featureValues = getFeaturesResponse.getFeatureValuesAsMap();
@@ -54,6 +64,7 @@ public class TectonClientSimpleDemo {
         for (FeatureValue featureValue : featureValues.values()) {
             System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
             System.out.println("Feature Name: " + featureValue.getFeatureName());
+            System.out.println("Value Type: "+featureValue.getValueType());
             switch (featureValue.getValueType()) {
                 case STRING:
                     System.out.println("Feature Value: " + featureValue.stringValue());

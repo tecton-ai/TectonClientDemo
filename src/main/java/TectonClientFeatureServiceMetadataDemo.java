@@ -1,9 +1,9 @@
-import com.tecton.client.TectonClient;
-import com.tecton.client.model.FeatureServiceMetadata;
-import com.tecton.client.model.NameAndType;
-import com.tecton.client.model.ValueType;
-import com.tecton.client.request.GetFeatureServiceMetadataRequest;
-import com.tecton.client.response.GetFeatureServiceMetadataResponse;
+import ai.tecton.client.TectonClient;
+import ai.tecton.client.model.FeatureServiceMetadata;
+import ai.tecton.client.model.NameAndType;
+import ai.tecton.client.model.ValueType;
+import ai.tecton.client.request.GetFeatureServiceMetadataRequest;
+import ai.tecton.client.response.GetFeatureServiceMetadataResponse;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,11 +22,36 @@ public class TectonClientFeatureServiceMetadataDemo {
         // Create Tecton Client
         TectonClient tectonClient = new TectonClient(url, apiKey);
 
+
         //Create Request
-        GetFeatureServiceMetadataRequest request = new GetFeatureServiceMetadataRequest("fraud_detection_feature_service", "prod");
+        GetFeatureServiceMetadataRequest request = new GetFeatureServiceMetadataRequest("fraud_detection_feature_service", "pooja-live");
+
 
         //Send request and receive response
+        long start1 = System.currentTimeMillis();
         GetFeatureServiceMetadataResponse response = tectonClient.getFeatureServiceMetadata(request);
+        long stop1 = System.currentTimeMillis();
+
+        long start2 = System.currentTimeMillis();
+        GetFeatureServiceMetadataResponse response2 = tectonClient.getFeatureServiceMetadata(request);
+        long stop2 = System.currentTimeMillis();
+
+        long start3 = System.currentTimeMillis();
+        GetFeatureServiceMetadataResponse response3 = tectonClient.getFeatureServiceMetadata(request);
+        long stop3 = System.currentTimeMillis();
+
+        System.out.println("\nRequest 1");
+        System.out.println("Total Time: "+(stop1-start1)+"ms");
+        System.out.println("Request Latency: "+response.getRequestLatency().toMillis()+"ms");
+
+        System.out.println("\nRequest 2");
+        System.out.println("Total Time: "+(stop2-start2)+"ms");
+        System.out.println("Request Latency: "+response2.getRequestLatency().toMillis()+"ms");
+
+        System.out.println("\nRequest 3");
+        System.out.println("Total Time: "+(stop3-start3)+"ms");
+        System.out.println("Request Latency: "+response3.getRequestLatency().toMillis()+"ms");
+
 
         //Access metadata
         FeatureServiceMetadata featureServiceMetadata = response.getFeatureServiceMetadata();
