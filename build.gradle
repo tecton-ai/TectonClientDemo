@@ -7,14 +7,11 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-    }
 }
 sourceCompatibility = 8
 targetCompatibility = 8
 dependencies {
-    implementation group: 'ai.tecton', name: 'java-client', version: '0.1.0-SNAPSHOT'
+    implementation files('libs/java-client-0.1.0-SNAPSHOT.jar')
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
