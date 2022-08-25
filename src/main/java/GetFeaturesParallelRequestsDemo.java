@@ -28,7 +28,7 @@ public class GetFeaturesParallelRequestsDemo {
 		TectonClientOptions clientOptions = new TectonClientOptions.Builder().maxParallelRequests(50).build();
 		TectonClient tectonClient = new TectonClient(url, apiKey, clientOptions);
 
-		// Create GetFeaturesBatchRequest with 200 request data
+		// Create GetFeaturesBatchRequest with 200 request data. Note that this batch request will use the default microBatchSize of 1
 		List<GetFeaturesRequestData> getFeaturesRequestDataList = GetFeaturesBatchDemo.generateFraudRequestDataFromFile("input.csv");
 		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.DEFAULT_METADATA_OPTIONS);
 

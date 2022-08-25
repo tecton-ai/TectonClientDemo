@@ -5,6 +5,7 @@ import ai.tecton.client.model.FeatureValue;
 import ai.tecton.client.model.ValueType;
 import ai.tecton.client.request.GetFeaturesBatchRequest;
 import ai.tecton.client.request.GetFeaturesRequestData;
+import ai.tecton.client.request.RequestConstants;
 import ai.tecton.client.response.GetFeaturesBatchResponse;
 import ai.tecton.client.response.GetFeaturesResponse;
 import org.apache.commons.lang3.StringUtils;
@@ -37,8 +38,8 @@ public class GetFeaturesBatchDemo {
 
 		List<GetFeaturesRequestData> getFeaturesRequestDataList = generateFraudRequestDataFromFile("input.csv");
 
-		//Create GetFeaturesBatchRequest with 200 request data and default microBatchSize(1)
-		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList);
+		//Create GetFeaturesBatchRequest with 200 request data and a microBatchSize of 5
+		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.DEFAULT_METADATA_OPTIONS, 5);
 
 		//Call getFeaturesBatch using the tectonClient
 		try {
