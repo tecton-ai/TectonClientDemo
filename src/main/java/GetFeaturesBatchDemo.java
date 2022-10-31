@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * A GetFeaturesBatch request with default TectonClientOptions and default microBatchSize (1)
+ * A GetFeaturesBatch request with default TectonClientOptions and a microBatchSize of 5
  */
 public class GetFeaturesBatchDemo {
 
@@ -68,6 +68,7 @@ public class GetFeaturesBatchDemo {
 				System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
 				System.out.println("Feature Name: " + featureValue.getFeatureName());
 				System.out.println("Value Type: "+featureValue.getValueType());
+				System.out.println("Status: "+ featureValue.getFeatureStatus().get());
 				switch (featureValue.getValueType()) {
 					case STRING:
 						System.out.println("Feature Value: " + featureValue.stringValue());

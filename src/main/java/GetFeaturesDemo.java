@@ -27,7 +27,6 @@ public class GetFeaturesDemo {
 		properties.load(new FileInputStream("tecton.properties"));
 		String url = properties.getProperty("url");
 		String apiKey = properties.getProperty("apiKey");
-		//String apiKey = "1234";
 
 		// Create Tecton Client
 		TectonClient tectonClient = new TectonClient(url, apiKey);

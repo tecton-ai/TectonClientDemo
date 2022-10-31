@@ -45,6 +45,7 @@ public class GetFeaturesWithMetadataOptionsDemo {
             System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
             System.out.println("Feature Name: " + featureValue.getFeatureName());
             System.out.println("Data Type: " + featureValue.getValueType().name());
+            System.out.println("Status: "+ featureValue.getFeatureStatus().get());
             if (featureValue.getEffectiveTime().isPresent()) {
                 System.out.println("Effective Time: " + featureValue.getEffectiveTime().get());
             }
