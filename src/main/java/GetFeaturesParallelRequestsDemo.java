@@ -25,7 +25,7 @@ public class GetFeaturesParallelRequestsDemo {
 
 
 		// Create Tecton Client with custom maxParallelRequests
-		TectonClientOptions clientOptions = new TectonClientOptions.Builder().maxParallelRequests(50).build();
+		TectonClientOptions clientOptions = new TectonClientOptions.Builder().maxParallelRequests(80).build();
 		TectonClient tectonClient = new TectonClient(url, apiKey, clientOptions);
 
 		// Create GetFeaturesBatchRequest with 200 request data. Note that this batch request will use the default microBatchSize of 1

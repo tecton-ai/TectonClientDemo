@@ -37,7 +37,7 @@ public class GetFeaturesWithMetadataOptionsDemo {
         // Send request and receive response
         GetFeaturesResponse getFeaturesResponse = tectonClient.getFeatures(getFeaturesRequest);
 
-        //Get Feature Vector as Map
+        // Get Feature Vector as Map
         Map<String, FeatureValue> featureValues = getFeaturesResponse.getFeatureValuesAsMap();
 
         //Print Feature Values
@@ -45,6 +45,7 @@ public class GetFeaturesWithMetadataOptionsDemo {
             System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
             System.out.println("Feature Name: " + featureValue.getFeatureName());
             System.out.println("Data Type: " + featureValue.getValueType().name());
+            System.out.println("Status: "+ featureValue.getFeatureStatus().get());
             if (featureValue.getEffectiveTime().isPresent()) {
                 System.out.println("Effective Time: " + featureValue.getEffectiveTime().get());
             }
@@ -64,8 +65,7 @@ public class GetFeaturesWithMetadataOptionsDemo {
 
         }
 
-        //Print Slo Information
-        //Get SloInformation
+        // Print Slo Information
         if (getFeaturesResponse.getSloInformation().isPresent()) {
             SloInformation sloInfo = getFeaturesResponse.getSloInformation().get();
             if (sloInfo.isSloEligible().isPresent()) {

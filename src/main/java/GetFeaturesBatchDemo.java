@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * A GetFeaturesBatch request with default TectonClientOptions and default microBatchSize (1)
+ * A GetFeaturesBatch request with default TectonClientOptions and a microBatchSize
  */
 public class GetFeaturesBatchDemo {
 
@@ -39,7 +39,7 @@ public class GetFeaturesBatchDemo {
 		List<GetFeaturesRequestData> getFeaturesRequestDataList = generateFraudRequestDataFromFile("input.csv");
 
 		//Create GetFeaturesBatchRequest with 200 request data and a microBatchSize of 5
-		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.DEFAULT_METADATA_OPTIONS, 5);
+		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.ALL_METADATA_OPTIONS, 5);
 
 		//Call getFeaturesBatch using the tectonClient
 		try {
@@ -68,6 +68,7 @@ public class GetFeaturesBatchDemo {
 				System.out.println("\nFeature Namespace: " + featureValue.getFeatureNamespace());
 				System.out.println("Feature Name: " + featureValue.getFeatureName());
 				System.out.println("Value Type: "+featureValue.getValueType());
+				System.out.println("Status: "+ featureValue.getFeatureStatus().get());
 				switch (featureValue.getValueType()) {
 					case STRING:
 						System.out.println("Feature Value: " + featureValue.stringValue());
