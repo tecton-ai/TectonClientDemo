@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * A GetFeaturesBatch request with default TectonClientOptions and a microBatchSize
+ * A GetFeaturesBatch request with default TectonClientOptions and a microBatchSize of 5
  */
 public class GetFeaturesBatchDemo {
 
@@ -39,7 +39,7 @@ public class GetFeaturesBatchDemo {
 		List<GetFeaturesRequestData> getFeaturesRequestDataList = generateFraudRequestDataFromFile("input.csv");
 
 		//Create GetFeaturesBatchRequest with 200 request data and a microBatchSize of 5
-		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.ALL_METADATA_OPTIONS, 5);
+		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.DEFAULT_METADATA_OPTIONS, 5);
 
 		//Call getFeaturesBatch using the tectonClient
 		try {
