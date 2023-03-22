@@ -1,8 +1,6 @@
 name: tecton-e2e-test 
 on:
   workflow_call:
-    branches:
-      - 'main'
     inputs:
       client_version:
         required: true
