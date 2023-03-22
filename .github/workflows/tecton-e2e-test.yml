@@ -4,12 +4,16 @@ on:
     branches:
       - 'main'
     inputs:
-      client-version:
+      client_version:
         required: true
         type: string
   workflow_dispatch:
     branches:
       - 'main'
+    inputs:
+      client_version:
+        description: 'Client Version for Testing'
+        required: true
 jobs:
   run-e2e-tests:
     runs-on: ubuntu-latest
