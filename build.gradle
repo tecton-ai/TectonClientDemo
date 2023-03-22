@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
 }
@@ -13,14 +16,27 @@ repositories {
 }
 sourceCompatibility = 8
 targetCompatibility = 8
+
+def client_version = System.getenv('JAVA_CLIENT_VERSION')
+
 dependencies {
-    // implementation group: 'ai.tecton', name: 'java-client', version: '0.1.0-SNAPSHOT'
-    implementation group: 'ai.tecton', name: 'java-client', version: '0.1.0'
+    implementation "ai.tecton:java-client:${client_version}"
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
-
+    testImplementation 'junit:junit:4.13.2'
 }
 
 test {
-    useJUnitPlatform()
+    useJUnit()
+    testLogging {
+        showStandardStreams = true
+        events = [TestLogEvent.FAILED,
+                  TestLogEvent.PASSED,
+                  TestLogEvent.SKIPPED,
+                  TestLogEvent.STANDARD_OUT]
+        exceptionFormat = TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+    }
 }
