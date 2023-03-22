@@ -28,31 +28,8 @@ public class ServiceMetadataDemo {
 
 
         //Send request and receive response
-        long start1 = System.currentTimeMillis();
         GetFeatureServiceMetadataResponse response = tectonClient.getFeatureServiceMetadata(request);
-        long stop1 = System.currentTimeMillis();
-
-        long start2 = System.currentTimeMillis();
-        GetFeatureServiceMetadataResponse response2 = tectonClient.getFeatureServiceMetadata(request);
-        long stop2 = System.currentTimeMillis();
-
-        long start3 = System.currentTimeMillis();
-        GetFeatureServiceMetadataResponse response3 = tectonClient.getFeatureServiceMetadata(request);
-        long stop3 = System.currentTimeMillis();
-
-        System.out.println("\nRequest 1");
-        System.out.println("Total Time: "+(stop1-start1)+"ms");
-        System.out.println("Request Latency: "+response.getRequestLatency().toMillis()+"ms");
-
-        System.out.println("\nRequest 2");
-        System.out.println("Total Time: "+(stop2-start2)+"ms");
-        System.out.println("Request Latency: "+response2.getRequestLatency().toMillis()+"ms");
-
-        System.out.println("\nRequest 3");
-        System.out.println("Total Time: "+(stop3-start3)+"ms");
-        System.out.println("Request Latency: "+response3.getRequestLatency().toMillis()+"ms");
-
-
+        
         //Access metadata
         FeatureServiceMetadata featureServiceMetadata = response.getFeatureServiceMetadata();
 
