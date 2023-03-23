@@ -18,14 +18,14 @@ jobs:
   run-snapshot-tests:
     uses: ./.github/workflows/tecton-e2e-test.yml
     with:
-      client_version: latest.integration
+      client_version: SNAPSHOT
     secrets:
       TECTON_URL: ${{ secrets.TECTON_URL }} 
       TECTON_API_KEY: ${{ secrets.TECTON_API_KEY }}
   run-stable-release-tests:
     uses: ./.github/workflows/tecton-e2e-test.yml
     with:
-      client_version: latest.release
+      client_version: RELEASE
     secrets:
       TECTON_URL: ${{ secrets.TECTON_URL }}
       TECTON_API_KEY: ${{ secrets.TECTON_API_KEY }}
