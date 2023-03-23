@@ -17,9 +17,9 @@ jobs:
           cache: gradle
   run-snapshot-tests:   
     uses: ./.github/workflows/tecton-e2e-test.yml
-      with:
-        client_version: latest.integration
+    with:
+      client_version: latest.integration
   run-stable-release-tests:
     uses: ./.github/workflows/tecton-e2e-test.yml
-      with:
-        client_version: latest.release
+    with:
+      client_version: latest.release
