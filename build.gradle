@@ -14,9 +14,9 @@ targetCompatibility = 8
 def client_version = System.getenv('JAVA_CLIENT_VERSION')
 
 repositories {
-    if(client_version.equals("RELEASE")) {
+    if (client_version.equals("RELEASE")) {
         mavenCentral()
-    }else {
+    } else {
         maven {
             url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
         }
