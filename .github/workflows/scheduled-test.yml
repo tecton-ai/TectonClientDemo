@@ -15,7 +15,7 @@ jobs:
           distribution: zulu
           java-version: 8
           cache: gradle
-  run-snapshot-tests:   
+  run-snapshot-tests:
     uses: ./.github/workflows/tecton-e2e-test.yml
     with:
       client_version: latest.integration
