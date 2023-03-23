@@ -5,6 +5,13 @@ on:
       client_version:
         required: true
         type: string
+    secrets:
+      TECTON_URL:
+        description: 'Tecton Service URL'
+        required: true
+      TECTON_API_KEY:
+        description: 'Tecton API Key for Authentication'
+        required: true
   workflow_dispatch:
     branches:
       - 'main'
