@@ -18,7 +18,7 @@ jobs:
     env:
       TECTON_URL: ${{ secrets.TECTON_URL }} 
       TECTON_API_KEY: ${{ secrets.TECTON_API_KEY }}
-      WORKSPACE_NAME: prod
+      WORKSPACE_NAME: prod_JAVA_CLIENT_TEST_WS_DO_NOT_DELETE
       FEATURE_SERVICE_NAME: fraud_detection_feature_service
       JAVA_CLIENT_VERSION: ${{ inputs.client_version }}
     steps:
