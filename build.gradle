@@ -11,20 +11,17 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 8
 targetCompatibility = 8
 
-def client_version = System.getenv('JAVA_CLIENT_VERSION')
+def client_version = System.getenv('JAVA_CLIENT_VERSION') ?: "latest.release"
 
 repositories {
-    if (client_version.equals("RELEASE")) {
         mavenCentral()
-    } else {
         maven {
-            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+           url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
         }
-    }
 }
 
 dependencies {
-    implementation "ai.tecton:java-client:+"
+    implementation "ai.tecton:java-client:$client_version"
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
     testImplementation 'junit:junit:4.13.2'

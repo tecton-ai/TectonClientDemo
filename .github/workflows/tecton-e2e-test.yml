@@ -17,7 +17,7 @@ on:
       - 'main'
     inputs:
       client_version:
-        description: 'Client Version for Testing, one of SNAPSHOT or RELEASE'
+        description: 'Java Client Version for Testing'
         required: true
 jobs:
   run-e2e-tests:
