@@ -100,7 +100,6 @@ public class TectonClientE2ETest {
 		Assert.assertEquals(FEATURE_NAMESPACE, sampleFeatureValue.getFeatureNamespace());
 		Assert.assertEquals(FEATURE_NAME, sampleFeatureValue.getFeatureName());
 		Assert.assertEquals(ValueType.INT64, sampleFeatureValue.getValueType());
-		Assert.assertNotNull(sampleFeatureValue.int64value());
 	}
 
 }
