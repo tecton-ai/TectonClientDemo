@@ -71,7 +71,7 @@ public class TectonClientE2ETest {
 
 	@Test
 	public void testGetFeaturesBatchE2E_ParallelRequests() throws IOException {
-		TectonClientOptions clientOptions = new TectonClientOptions.Builder().maxParallelRequests(50).build();
+		TectonClientOptions clientOptions = new TectonClientOptions.Builder().maxParallelRequests(25).build();
 		TectonClient tectonClient = new TectonClient(TECTON_URL, TECTON_API_KEY, clientOptions);
 		List<GetFeaturesRequestData> getFeaturesRequestDataList = GetFeaturesBatchDemo.generateFraudRequestDataFromFile("input.csv");
 		GetFeaturesBatchRequest batchRequest = new GetFeaturesBatchRequest(WORKSPACE_NAME, FEATURE_SERVICE_NAME, getFeaturesRequestDataList, RequestConstants.DEFAULT_METADATA_OPTIONS);
