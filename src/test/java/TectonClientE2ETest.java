@@ -16,6 +16,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class TectonClientE2ETest {
 
@@ -31,9 +32,15 @@ public class TectonClientE2ETest {
 	@Before
 	public void setup() {
 		TECTON_URL = System.getenv("TECTON_URL");
-		TECTON_API_KEY = System.getenv("TECTON_API_KEY");
-		WORKSPACE_NAME = System.getenv("WORKSPACE_NAME");
+        WORKSPACE_NAME = System.getenv("WORKSPACE_NAME");
 		FEATURE_SERVICE_NAME = System.getenv("FEATURE_SERVICE_NAME");
+
+        // Use the more specific environment variable if it's present, otherwise fallback
+        // to the more generically named one.
+        String apiKey = System.getenv("TECTON_API_KEY_FOR_JAVA_CLIENT_TEST");
+        TECTON_API_KEY = !Objects.equals(apiKey, "") ? apiKey : System.getenv(
+                "TECTON_API_KEY");
+
 		tectonClient = new TectonClient(TECTON_URL, TECTON_API_KEY);
 	}
 
