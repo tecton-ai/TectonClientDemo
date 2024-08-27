@@ -38,8 +38,8 @@ public class TectonClientE2ETest {
         // Use the more specific environment variable if it's present, otherwise fallback
         // to the more generically named one.
         String apiKey = System.getenv("TECTON_API_KEY_FOR_JAVA_CLIENT_TEST");
-        TECTON_API_KEY = !Objects.equals(apiKey, "") ? apiKey : System.getenv(
-                "TECTON_API_KEY");
+        TECTON_API_KEY = apiKey == null || apiKey.isEmpty() ? System.getenv(
+                "TECTON_API_KEY") : apiKey;
 
 		tectonClient = new TectonClient(TECTON_URL, TECTON_API_KEY);
 	}
